@@ -1,4 +1,4 @@
-type PancakeFactory @entity {
+type SkalableFactory @entity {
   id: ID!
 
   "Total of pairs"
@@ -86,7 +86,7 @@ type Pair @entity {
   pairHourData: [PairHourData!]! @derivedFrom(field: "pair")
 }
 
-type PancakeDayData @entity {
+type SkalableDayData @entity {
   id: ID! # timestamp rounded to current day by dividing by 86400
 
   date: Int!

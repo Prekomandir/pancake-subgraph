@@ -133,15 +133,15 @@ export function swap(event: ethereum.Event, params: SwapParams): void {
   // update day entities
   let pairDayData = updatePairDayData(event);
   let pairHourData = updatePairHourData(event);
-  let pancakeDayData = updatePancakeDayData(event);
+  let skalableDayData = updatePancakeDayData(event);
   let token0DayData = updateTokenDayData(token0 as Token, event);
   let token1DayData = updateTokenDayData(token1 as Token, event);
 
   // swap specific updating
-  pancakeDayData.dailyVolumeUSD = pancakeDayData.dailyVolumeUSD.plus(trackedAmountUSD);
-  pancakeDayData.dailyVolumeBNB = pancakeDayData.dailyVolumeBNB.plus(trackedAmountBNB);
-  pancakeDayData.dailyVolumeUntracked = pancakeDayData.dailyVolumeUntracked.plus(derivedAmountUSD);
-  pancakeDayData.save();
+  skalableDayData.dailyVolumeUSD = skalableDayData.dailyVolumeUSD.plus(trackedAmountUSD);
+  skalableDayData.dailyVolumeBNB = skalableDayData.dailyVolumeBNB.plus(trackedAmountBNB);
+  skalableDayData.dailyVolumeUntracked = skalableDayData.dailyVolumeUntracked.plus(derivedAmountUSD);
+  skalableDayData.save();
 
   // swap specific updating for pair
   pairDayData.dailyVolumeToken0 = pairDayData.dailyVolumeToken0.plus(amount0Total);

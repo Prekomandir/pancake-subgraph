@@ -4,36 +4,36 @@ import {
   Pair,
   PairDayData,
   PairHourData,
-  PancakeDayData,
-  PancakeFactory,
+  SkalableDayData,
+  SkalableFactory,
   Token,
   TokenDayData,
 } from "../generated/schema";
 import { BigDecimal, BigInt, ethereum } from "@graphprotocol/graph-ts";
 import { FACTORY_ADDRESS, ONE_BI, ZERO_BD, ZERO_BI } from "./utils";
 
-export function updatePancakeDayData(event: ethereum.Event): PancakeDayData {
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+export function updatePancakeDayData(event: ethereum.Event): skalableDayData {
+  let pancake = SkalableFactory.load(FACTORY_ADDRESS);
   let timestamp = event.block.timestamp.toI32();
   let dayID = timestamp / 86400;
   let dayStartTimestamp = dayID * 86400;
 
-  let pancakeDayData = PancakeDayData.load(dayID.toString());
-  if (pancakeDayData === null) {
-    pancakeDayData = new PancakeDayData(dayID.toString());
-    pancakeDayData.date = dayStartTimestamp;
-    pancakeDayData.dailyVolumeUSD = ZERO_BD;
-    pancakeDayData.dailyVolumeETH = ZERO_BD;
-    pancakeDayData.totalVolumeUSD = ZERO_BD;
-    pancakeDayData.totalVolumeETH = ZERO_BD;
-    pancakeDayData.dailyVolumeUntracked = ZERO_BD;
+  let skalableDayData = skalableDayData.load(dayID.toString());
+  if (skalableDayData === null) {
+    skalableDayData = new SkalableDayData(dayID.toString());
+    skalableDayData.date = dayStartTimestamp;
+    skalableDayData.dailyVolumeUSD = ZERO_BD;
+    skalableDayData.dailyVolumeETH = ZERO_BD;
+    skalableDayData.totalVolumeUSD = ZERO_BD;
+    skalableDayData.totalVolumeETH = ZERO_BD;
+    skalableDayData.dailyVolumeUntracked = ZERO_BD;
   }
-  pancakeDayData.totalLiquidityUSD = pancake.totalLiquidityUSD;
-  pancakeDayData.totalLiquidityETH = pancake.totalLiquidityETH;
-  pancakeDayData.totalTransactions = pancake.totalTransactions;
-  pancakeDayData.save();
+  skalableDayData.totalLiquidityUSD = pancake.totalLiquidityUSD;
+  skalableDayData.totalLiquidityETH = pancake.totalLiquidityETH;
+  skalableDayData.totalTransactions = pancake.totalTransactions;
+  skalableDayData.save();
 
-  return pancakeDayData as PancakeDayData;
+  return skalableDayData as SkalableDayData;
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {

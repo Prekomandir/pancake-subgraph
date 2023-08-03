@@ -6,14 +6,14 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Timelock
-    network: bsc
+    network: arbitrum_one
     source:
       address: '0xA1f482Dc58145Ba2210bC21878Ca34000E2e8fE4'
       abi: Timelock
       startBlock: 704262
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/index.ts
       entities:

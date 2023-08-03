@@ -6,14 +6,14 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Profile
-    network: bsc
+    network: arbitrum_one
     source:
       address: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a'
       abi: Profile
       startBlock: 4570433
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/index.ts
       entities:

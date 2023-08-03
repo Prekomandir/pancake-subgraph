@@ -1,23 +1,23 @@
 /* eslint-disable prefer-const */
-import { Bundle, Pair, PairDayData, PairHourData, PancakeDayData, Token, TokenDayData } from "../../generated/schema";
+import { Bundle, Pair, PairDayData, PairHourData, SkalableDayData, Token, TokenDayData } from "../../generated/schema";
 import { BigDecimal, BigInt, ethereum } from "@graphprotocol/graph-ts";
 import { BIG_DECIMAL_ZERO, BIG_INT_ONE, BIG_INT_ZERO, FACTORIES } from "../utils";
 import { getOrCreateFactory } from "../utils/data";
 
-export function updatePancakeDayData(event: ethereum.Event): PancakeDayData {
+export function updatePancakeDayData(event: ethereum.Event): SkalableDayData {
   let timestamp = event.block.timestamp.toI32();
   let dayID = timestamp / 86400;
   let dayStartTimestamp = dayID * 86400;
 
-  let pancakeDayData = PancakeDayData.load(dayID.toString());
-  if (pancakeDayData === null) {
-    pancakeDayData = new PancakeDayData(dayID.toString());
-    pancakeDayData.date = dayStartTimestamp;
-    pancakeDayData.dailyVolumeUSD = BIG_DECIMAL_ZERO;
-    pancakeDayData.dailyVolumeBNB = BIG_DECIMAL_ZERO;
-    pancakeDayData.totalVolumeUSD = BIG_DECIMAL_ZERO;
-    pancakeDayData.totalVolumeBNB = BIG_DECIMAL_ZERO;
-    pancakeDayData.dailyVolumeUntracked = BIG_DECIMAL_ZERO;
+  let skalableDayData = SkalableDayData.load(dayID.toString());
+  if (skalableDayData === null) {
+    skalableDayData = new SkalableDayData(dayID.toString());
+    skalableDayData.date = dayStartTimestamp;
+    skalableDayData.dailyVolumeUSD = BIG_DECIMAL_ZERO;
+    skalableDayData.dailyVolumeBNB = BIG_DECIMAL_ZERO;
+    skalableDayData.totalVolumeUSD = BIG_DECIMAL_ZERO;
+    skalableDayData.totalVolumeBNB = BIG_DECIMAL_ZERO;
+    skalableDayData.dailyVolumeUntracked = BIG_DECIMAL_ZERO;
   }
 
   let totalLiquidityBNB = BIG_DECIMAL_ZERO;
@@ -30,12 +30,12 @@ export function updatePancakeDayData(event: ethereum.Event): PancakeDayData {
     totalTransactions = totalTransactions.plus(factory.totalTransactions);
   }
 
-  pancakeDayData.totalLiquidityUSD = totalLiquidityUSD;
-  pancakeDayData.totalLiquidityBNB = totalLiquidityBNB;
-  pancakeDayData.totalTransactions = totalTransactions;
-  pancakeDayData.save();
+  skalableDayData.totalLiquidityUSD = totalLiquidityUSD;
+  skalableDayData.totalLiquidityBNB = totalLiquidityBNB;
+  skalableDayData.totalTransactions = totalTransactions;
+  skalableDayData.save();
 
-  return pancakeDayData as PancakeDayData;
+  return skalableDayData as SkalableDayData;
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {

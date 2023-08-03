@@ -6,14 +6,14 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: TradingCompetitionV1
-    network: bsc
+    network: arbitrum_one
     source:
       address: '0xd718baa0B1F4f70dcC8458154042120FFE0DEFFA'
       abi: TradingCompetitionV1
       startBlock: 6214239
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/competition.ts
       entities:
@@ -38,12 +38,12 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pair
-    network: bsc
+    network: arbitrum_one
     source:
       abi: Pair
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/pair.ts
       entities:

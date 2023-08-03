@@ -9,14 +9,14 @@ graft:
 dataSources:
   - kind: ethereum/contract
     name: StableSwapFactory
-    network: bsc
+    network: arbitrum_one
     source:
       address: '0x25a55f9f2279A54951133D503490342b50E5cd15'
       abi: StableSwapFactory
       startBlock: 25535458
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/factory.ts
       entities:
@@ -42,12 +42,12 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: StableSwapPair
-    network: bsc
+    network: arbitrum_one
     source:
       abi: StableSwapPair
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/stableSwapPairV2.ts
       entities:
@@ -75,12 +75,12 @@ templates:
           handler: handleTokenExchange
   - kind: ethereum/contract
     name: StableSwapPairV2
-    network: bsc
+    network: arbitrum_one
     source:
       abi: StableSwapPairV2
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/stableSwapPairV3.ts
       entities:
@@ -108,12 +108,12 @@ templates:
           handler: handleTokenExchange
   - kind: ethereum/contract
     name: StableSwap3PairV2
-    network: bsc
+    network: arbitrum_one
     source:
       abi: StableSwap3PairV2
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/stableSwapPairV3.ts
       entities:
@@ -141,12 +141,12 @@ templates:
           handler: handleTriTokenExchange
   - kind: ethereum/contract
     name: ERC20
-    network: bsc
+    network: arbitrum_one
     source:
       abi: ERC20
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       file: ./mappings/transfer.ts
       entities:

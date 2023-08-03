@@ -1,29 +1,29 @@
 /* eslint-disable prefer-const */
 import { PairHourData } from "../generated/schema";
 import { BigInt, ethereum } from "@graphprotocol/graph-ts";
-import { Pair, Bundle, Token, PancakeFactory, PancakeDayData, PairDayData, TokenDayData } from "../generated/schema";
+import { Pair, Bundle, Token, SkalableFactory, SkalableDayData, PairDayData, TokenDayData } from "../generated/schema";
 import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from "./utils";
 
-export function updatePancakeDayData(event: ethereum.Event): PancakeDayData {
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+export function updatePancakeDayData(event: ethereum.Event): SkalableDayData {
+  let pancake = SkalableFactory.load(FACTORY_ADDRESS);
   let timestamp = event.block.timestamp.toI32();
   let dayID = timestamp / 86400;
   let dayStartTimestamp = dayID * 86400;
 
-  let pancakeDayData = PancakeDayData.load(dayID.toString());
-  if (pancakeDayData === null) {
-    pancakeDayData = new PancakeDayData(dayID.toString());
-    pancakeDayData.date = dayStartTimestamp;
-    pancakeDayData.dailyVolumeUSD = ZERO_BD;
-    pancakeDayData.dailyVolumeBNB = ZERO_BD;
-    pancakeDayData.totalVolumeUSD = ZERO_BD;
-    pancakeDayData.totalVolumeBNB = ZERO_BD;
-    pancakeDayData.dailyVolumeUntracked = ZERO_BD;
+  let skalableDayData = skalableDayData.load(dayID.toString());
+  if (skalableDayData === null) {
+    skalableDayData = new SkalableDayData(dayID.toString());
+    skalableDayData.date = dayStartTimestamp;
+    skalableDayData.dailyVolumeUSD = ZERO_BD;
+    skalableDayData.dailyVolumeBNB = ZERO_BD;
+    skalableDayData.totalVolumeUSD = ZERO_BD;
+    skalableDayData.totalVolumeBNB = ZERO_BD;
+    skalableDayData.dailyVolumeUntracked = ZERO_BD;
   }
-  pancakeDayData.totalTransactions = pancake.totalTransactions;
-  pancakeDayData.save();
+  skalableDayData.totalTransactions = pancake.totalTransactions;
+  skalableDayData.save();
 
-  return pancakeDayData as PancakeDayData;
+  return skalableDayData as SkalableDayData;
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {
